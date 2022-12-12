@@ -13,7 +13,7 @@ class App extends React.Component {
         { name: "name2", artist: "artist2", album: "album2", id: 2 },
         { name: "name3", artist: "artist3", album: "album3", id: 3 },
       ],
-      playlistName: "My Playlist",
+      playListName: "My Playlist",
       playListTracks: [
         {
           name: "playListName1",
@@ -45,13 +45,13 @@ class App extends React.Component {
       return;
     }
     tracks.push(track);
-    this.setState({ playlistTracks: tracks });
+    this.setState({ playListTracks: tracks });
   }
 
   removeTrack(track) {
     let tracks = this.state.playListTracks;
     tracks = tracks.filter((currentTrack) => currentTrack.id !== track.id);
-    this.setState({ playlistTracks: tracks });
+    this.setState({ playListTracks: tracks });
   }
 
   render() {
