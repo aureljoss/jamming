@@ -1,5 +1,3 @@
-import SearchBar from "../Components/SearchBar/SearchBar";
-
 let accessToken;
 const clientId='05b99b47d0384570855ca50b0538ead7';
 const redirectURI="http://localhost:3000/";
@@ -26,24 +24,27 @@ const Spotify={
     }
 },
 
-    search(term){
-        const accessToken=Spotify.getAccessToken();
-        return fetch('https://api.spotify.com/v1/search?type=track&q=${term}',
-        {headers: {
-            Authorization: 'Bearer ${accessToken}'
-        }}).then(response=>{
-            return response.json();
-        }).then(jsonResponse=>{
-            if(!jsonResponse.tracks){return [];}
-            return jsonResponse.tracks.items.map(track=>({
-                id:track.id,
-                name:track.name,
-                artist:track.artists[0].name,
-                album:track.album.name,
-                uri:track.uri
-            }));
-        });
-    },
+search(term) {
+    const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term.replace(' ', '%20')}`;
+    return fetch(searchUrl, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      .then(response => response.json())
+      .then(jsonResponse => {
+        if (!jsonResponse.tracks) return [];
+        return jsonResponse.tracks.items.map(track => {
+          return {
+            id: track.id,
+            name: track.name,
+            artist: track.artists[0].name,
+            album: track.album.name,
+            uri: track.uri
+          }
+        })
+      });
+  },
  
     savePlayList(name,trackURIs){
         if(!name || !trackURIs.length){
