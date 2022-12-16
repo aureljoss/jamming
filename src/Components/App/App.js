@@ -16,7 +16,7 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlayListName=this.updatePlayListName.bind(this);
-    this.savePlaylist=this.savePlaylist.bind(this);
+    this.savePlayList=this.savePlayList.bind(this);
     this.search=this.search.bind(this);
   }
 
@@ -39,9 +39,9 @@ class App extends React.Component {
     this.setState({playListName:name});
   }
 
-  savePlaylist(){
+  savePlayList(){
     const trackURIs=this.state.playListTracks.map(track => track.uri);
-    Spotify.savePlaylist(this.state.playListName, trackURIs).then(()=>{
+    Spotify.savePlayList(this.state.playListName, trackURIs).then(()=>{
       this.setState({
         playListName:'New Playlist',
         playListTracks: []
@@ -73,7 +73,7 @@ class App extends React.Component {
               playListTracks={this.state.playListTracks}
               onRemove={this.removeTrack}
               onNameChange={this.updatePlayListName}
-              onSave={this.savePlaylist}
+              onSave={this.savePlayList}
             />
           </div>
         </div>
