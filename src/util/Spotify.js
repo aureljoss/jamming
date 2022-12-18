@@ -46,7 +46,7 @@ search(term) {
       });
   },
  
-    savePlayList(name,trackURIs){
+    savePlaylist(name,trackURIs){
         if(!name || !trackURIs.length){
             return;
         }

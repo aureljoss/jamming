@@ -16,7 +16,7 @@ constructor(props){
       <div className="Playlist">
         <input defaultValue={"New Playlist"} 
         onChange={this.handleNameChange}></input>
-        <TrackList tracks={this.props.playListTracks} 
+        <TrackList tracks={this.props.playlistTracks} 
         onRemove={this.props.onRemove}
         isRemoval={true}/>
         <button className="Playlist-save"
